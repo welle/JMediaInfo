@@ -210,8 +210,8 @@ public final class MediaInfoJavaGenerator {
                 }
                 final String javaName = constantName.replace("/", "").replace("(", "").replace(")", "").replace("-", "").replace("*", "").replace("_", "");
 
-                for (final String javaType : JAVATYPES) {
-                    if (!javadoc.toLowerCase().contains("deprecated")) {
+                if (!javadoc.toLowerCase().contains("deprecated")) {
+                    for (final String javaType : JAVATYPES) {
                         javaLines.add("   /**");
                         javaLines.add("    * Get " + javadoc + ".");
                         javaLines.add("    * ");
@@ -223,28 +223,25 @@ public final class MediaInfoJavaGenerator {
                         javaLines.add("    }");
                         javaLines.add("");
                     }
+
+                    javaLines.add("   /**");
+                    javaLines.add("    * Get " + javadoc + ".");
+                    javaLines.add("    * ");
+                    javaLines.add("    * @return " + javadoc + ".");
+                    javaLines.add("    */");
+                    javaLines.add("    @NonNull");
+                    javaLines.add("    public final List<@NonNull String> get" + javaName + "AsStringList() {");
+                    javaLines.add("        List<@NonNull String> result = new ArrayList<>();");
+                    javaLines.add("        final String value = getMediaInfo().getAsString(StreamKind." + kind + ", 0, " + kind + "." + javaName.toUpperCase() + ");");
+                    javaLines.add("        if (!TextUtils.isEmpty(value)) {");
+                    javaLines.add("            assert value != null;");
+                    javaLines.add("            result = splitValues(value, \"/\");");
+                    javaLines.add("        }");
+                    javaLines.add("        return result;");
+                    javaLines.add("    }");
+                    javaLines.add("");
                 }
 
-                javaLines.add("   /**");
-                javaLines.add("    * Get " + javadoc + ".");
-                javaLines.add("    * ");
-                javaLines.add("    * @return " + javadoc + ".");
-                javaLines.add("    */");
-                javaLines.add("    @NonNull");
-                if (javadoc.toLowerCase().contains("deprecated")) {
-                    javaLines.add("    @Deprecated");
-                }
-                javaLines.add("    public final List<@NonNull String> get" + javaName + "AsStringList() {");
-                javaLines.add("        List<@NonNull String> result = new ArrayList<>();");
-                javaLines.add("        final String value = getMediaInfo().getAsString(StreamKind." + kind + ", 0, " + kind + "." + javaName.toUpperCase() + ");");
-                javaLines.add("        if (!TextUtils.isEmpty(value)) {");
-                javaLines.add("            assert value != null;");
-                javaLines.add("            result = splitValues(value, \"/\");");
-                javaLines.add("        }");
-                javaLines.add("        return result;");
-                javaLines.add("    }");
-
-                javaLines.add("");
             }
             javaLines.add("}");
 
@@ -306,23 +303,22 @@ public final class MediaInfoJavaGenerator {
                 }
                 final String javaName = constantName.replace("/", "").replace("(", "").replace(")", "").replace("-", "").replace("*", "").replace("_", "");
 
-                for (final String javaType : JAVATYPES) {
-                    javaLines.add("   /**");
-                    javaLines.add("    * Get " + javadoc + ".");
-                    javaLines.add("    * ");
-                    javaLines.add("    * @return " + javadoc + ".");
-                    javaLines.add("    */");
-                    javaLines.add("    @Nullable");
-                    if (javadoc.toLowerCase().contains("deprecated")) {
-                        javaLines.add("    @Deprecated");
+                if (!javadoc.toLowerCase().contains("deprecated")) {
+                    for (final String javaType : JAVATYPES) {
+                        javaLines.add("   /**");
+                        javaLines.add("    * Get " + javadoc + ".");
+                        javaLines.add("    * ");
+                        javaLines.add("    * @return " + javadoc + ".");
+                        javaLines.add("    */");
+                        javaLines.add("    @Nullable");
+                        javaLines.add("    public final " + javaType + " get" + javaName + "As" + javaType + "() {");
+                        javaLines.add("        return getMediaInfo().getAs" + javaType + "(StreamKind." + kind + ", getStreamNumber(), " + kind + "." + javaName.toUpperCase() + ");");
+                        javaLines.add("    }");
+                        javaLines.add("");
                     }
-                    javaLines.add("    public final " + javaType + " get" + javaName + "As" + javaType + "() {");
-                    javaLines.add("        return getMediaInfo().getAs" + javaType + "(StreamKind." + kind + ", getStreamNumber(), " + kind + "." + javaName.toUpperCase() + ");");
-                    javaLines.add("    }");
                     javaLines.add("");
                 }
 
-                javaLines.add("");
             }
             javaLines.add("}");
 
