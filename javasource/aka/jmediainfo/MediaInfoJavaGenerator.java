@@ -37,7 +37,7 @@ public final class MediaInfoJavaGenerator {
     private static @NonNull final Logger LOGGER = Logger.getLogger("aka.jmediainfo.ConstantsCreator");
     private static @NonNull Map<@NonNull String, String> KINDSSTREAM;
     private static @NonNull Map<@NonNull String, String> KINDS;
-    private static @NonNull List<@NonNull String> JAVATYPES = Arrays.asList("Integer", "Long", "LocalDate", "String", "Boolean", "BigInteger", "URL");
+    private static @NonNull List<@NonNull String> JAVATYPES = Arrays.asList("Integer", "Long", "LocalDateTime", "LocalTime", "String", "Boolean", "BigInteger", "URL");
 
     static {
         KINDSSTREAM = new HashMap<>();
@@ -57,28 +57,31 @@ public final class MediaInfoJavaGenerator {
      */
     public static void main(final String[] args) {
         String path;
-        if (args == null || args.length < 1) {
+        String path2;
+        if (args == null || args.length < 2) {
             path = "D:/Projets Java/JMediaInfo/javasource/aka/jmetadata/main/";
+            path2 = "D:/Projets Java/JMediaInfo/javasource/aka/jmetadata/test/";
         } else {
             path = args[0];
+            path2 = args[1];
         }
 
-        if (path == null) {
+        if (path == null || path2 == null) {
             LOGGER.logp(Level.SEVERE, "ConstantsCreator", "main", "No path");
         } else {
             final MediaInfoJavaGenerator constantsCreator = new MediaInfoJavaGenerator();
             for (final Entry<@NonNull String, String> entry : KINDSSTREAM.entrySet()) {
                 assert entry != null;
-                constantsCreator.parseStreamKind(entry, path);
+                constantsCreator.parseStreamKind(entry, path, path2);
             }
             for (final Entry<@NonNull String, String> entry : KINDS.entrySet()) {
                 assert entry != null;
-                constantsCreator.parseKind(entry, path);
+                constantsCreator.parseKind(entry, path, path2);
             }
         }
     }
 
-    public boolean parseStreamKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path) {
+    public boolean parseStreamKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
         final boolean success = false;
 
         final String url = entry.getValue();
@@ -89,10 +92,12 @@ public final class MediaInfoJavaGenerator {
 
         createFileStream(entry.getKey(), map, path);
 
+        createFileTest(entry.getKey(), map, path2);
+
         return success;
     }
 
-    public boolean parseKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path) {
+    public boolean parseKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
         final boolean success = false;
 
         final String url = entry.getValue();
@@ -102,6 +107,8 @@ public final class MediaInfoJavaGenerator {
         createConstantsFile(entry.getKey(), map, path);
 
         createFile(entry.getKey(), map, path);
+
+        createFileTest(entry.getKey(), map, path2);
 
         return success;
     }
@@ -158,7 +165,8 @@ public final class MediaInfoJavaGenerator {
             javaLines.add("");
             javaLines.add("import java.math.BigInteger;");
             javaLines.add("import java.net.URL;");
-            javaLines.add("import java.time.LocalDate;");
+            javaLines.add("import java.time.LocalDateTime;");
+            javaLines.add("import java.time.LocalTime;");
             javaLines.add("import java.util.ArrayList;");
             javaLines.add("import java.util.List;");
             javaLines.add("");
@@ -246,12 +254,6 @@ public final class MediaInfoJavaGenerator {
             javaLines.add("}");
 
             Files.write(file, javaLines, Charset.forName("UTF-8"));
-
-            // if file doesnt exists, then create it
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            }
-
         } catch (final IOException e) {
             e.printStackTrace();
         }
@@ -267,7 +269,8 @@ public final class MediaInfoJavaGenerator {
             javaLines.add("");
             javaLines.add("import java.math.BigInteger;");
             javaLines.add("import java.net.URL;");
-            javaLines.add("import java.time.LocalDate;");
+            javaLines.add("import java.time.LocalDateTime;");
+            javaLines.add("import java.time.LocalTime;");
             javaLines.add("");
             javaLines.add("import org.eclipse.jdt.annotation.NonNull;");
             javaLines.add("import org.eclipse.jdt.annotation.Nullable;");
@@ -323,14 +326,60 @@ public final class MediaInfoJavaGenerator {
             javaLines.add("}");
 
             Files.write(file, javaLines, Charset.forName("UTF-8"));
-
-            // if file doesnt exists, then create it
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            }
-
         } catch (final IOException e) {
-            e.printStackTrace();
+            LOGGER.logp(Level.SEVERE, "MediaInfoJavaGenerator", "createFileStream", e.getMessage(), e);
+        }
+    }
+
+    private void createFileTest(@NonNull final String kind, @NonNull final Map<@NonNull String, String> map, @NonNull final String path) {
+        try {
+            final Path file = Paths.get(path + "JMetaData" + kind + "Test.java");
+
+            final List<@NonNull String> javaLines = new ArrayList<>();
+
+            javaLines.add("package aka.jmetadata.test;");
+            javaLines.add("");
+            javaLines.add("import org.eclipse.jdt.annotation.NonNull;");
+            javaLines.add("");
+            javaLines.add("import aka.jmetadata.main.JMetaData" + kind + ";");
+            javaLines.add("");
+            javaLines.add("/**");
+            javaLines.add(" * This class contains tests methods for " + kind + " informations of a specific " + kind + " stream.");
+            javaLines.add(" *");
+            javaLines.add(" * @author Welle Charlotte");
+            javaLines.add(" */");
+            javaLines.add("public final class JMetaData" + kind + "Test {");
+            javaLines.add("");
+            javaLines.add("   /**");
+            javaLines.add("    * Print " + kind + " informations.");
+            javaLines.add("    * ");
+            javaLines.add("    * @param jMetaData" + kind + " to be printed");
+            javaLines.add("    */");
+            javaLines.add("    static void printJMetadata" + kind + "(@NonNull final JMetaData" + kind + " jMetaData" + kind + ") {");
+            javaLines.add("        System.out.println(\"JMetaData" + kind + "\");");
+            javaLines.add("        System.out.println(\"-------------------------------------------------------\");");
+            for (final Entry<@NonNull String, String> line : map.entrySet()) {
+                final String constantName = line.getKey();
+                String javadoc = line.getValue();
+                if (javadoc == null || javadoc.isEmpty()) {
+                    javadoc = constantName;
+                }
+                final String javaName = constantName.replace("/", "").replace("(", "").replace(")", "").replace("-", "").replace("*", "").replace("_", "");
+
+                if (!javadoc.toLowerCase().contains("deprecated")) {
+                    for (final String javaType : JAVATYPES) {
+                        javaLines.add("        System.out.println(\"" + javadoc + " AS " + javaType + " === \" + jMetaData" + kind + ".get" + javaName + "As" + javaType + "());");
+                    }
+                }
+            }
+            javaLines.add("    }");
+            javaLines.add("");
+
+            javaLines.add("}");
+
+            Files.write(file, javaLines, Charset.forName("UTF-8"));
+        } catch (final IOException e) {
+            LOGGER.logp(Level.SEVERE, "MediaInfoJavaGenerator", "createFileTest", e.getMessage(), e);
         }
     }
 
@@ -360,8 +409,7 @@ public final class MediaInfoJavaGenerator {
                 System.out.println("GET request not worked");
             }
         } catch (final IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOGGER.logp(Level.SEVERE, "MediaInfoJavaGenerator", "parse", e.getMessage(), e);
         }
 
         return result;
