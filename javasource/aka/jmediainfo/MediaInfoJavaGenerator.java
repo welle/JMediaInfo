@@ -37,7 +37,7 @@ public final class MediaInfoJavaGenerator {
     private static @NonNull final Logger LOGGER = Logger.getLogger("aka.jmediainfo.ConstantsCreator");
     private static @NonNull Map<@NonNull String, String> KINDSSTREAM;
     private static @NonNull Map<@NonNull String, String> KINDS;
-    private static @NonNull List<@NonNull String> JAVATYPES = Arrays.asList("Integer", "Long", "LocalDateTime", "LocalTime", "String", "Boolean", "BigInteger", "URL");
+    private static @NonNull List<String> JAVATYPES = Arrays.asList("Integer", "Long", "LocalDateTime", "LocalTime", "String", "Boolean", "BigInteger", "URL");
 
     static {
         KINDSSTREAM = new HashMap<>();
@@ -59,8 +59,8 @@ public final class MediaInfoJavaGenerator {
         String path;
         String path2;
         if (args == null || args.length < 2) {
-            path = "D:/Projets Java/JMediaInfo/javasource/aka/jmetadata/main/";
-            path2 = "D:/Projets Java/JMediaInfo/javasource/aka/jmetadata/test/";
+            path = "D:/Projets Java/JMediaInfo/build/main/";
+            path2 = "D:/Projets Java/JMediaInfo/build/test/";
         } else {
             path = args[0];
             path2 = args[1];
@@ -81,7 +81,7 @@ public final class MediaInfoJavaGenerator {
         }
     }
 
-    public boolean parseStreamKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
+    private boolean parseStreamKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
         final boolean success = false;
 
         final String url = entry.getValue();
@@ -97,7 +97,7 @@ public final class MediaInfoJavaGenerator {
         return success;
     }
 
-    public boolean parseKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
+    private boolean parseKind(@NonNull final Entry<@NonNull String, String> entry, @NonNull final String path, @NonNull final String path2) {
         final boolean success = false;
 
         final String url = entry.getValue();
