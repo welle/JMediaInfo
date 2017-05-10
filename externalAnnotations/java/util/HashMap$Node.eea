@@ -1,0 +1,4 @@
+class java/util/HashMap$Node
+getKey
+ ()TK;
+ ()T1K;

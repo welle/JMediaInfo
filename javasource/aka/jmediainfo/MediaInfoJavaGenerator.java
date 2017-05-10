@@ -29,6 +29,8 @@ import aka.jmediainfo.constants.CSVConstants;
  *
  * see https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/
  *
+ * see https://github.com/MediaArea/MediaInfo
+ *
  * @author Welle Charlotte
  */
 public final class MediaInfoJavaGenerator {
@@ -59,8 +61,8 @@ public final class MediaInfoJavaGenerator {
         String path;
         String path2;
         if (args == null || args.length < 2) {
-            path = "D:/Projets Java/JMediaInfo/build/main/";
-            path2 = "D:/Projets Java/JMediaInfo/build/test/";
+            path = "C:/Projects/Own/JMediaInfo/build/main/";
+            path2 = "C:/Projects/Own/JMediaInfo/build/test/";
         } else {
             path = args[0];
             path2 = args[1];
