@@ -31,6 +31,8 @@ import aka.jmediainfo.constants.CSVConstants;
  *
  * see https://github.com/MediaArea/MediaInfo
  *
+ * https://mediaarea.net/fr/MediaInfo/Download
+ *
  * @author Welle Charlotte
  */
 public final class MediaInfoJavaGenerator {
@@ -335,14 +337,24 @@ public final class MediaInfoJavaGenerator {
 
     private void createFileTest(@NonNull final String kind, @NonNull final Map<@NonNull String, String> map, @NonNull final String path) {
         try {
-            final Path file = Paths.get(path + "JMetaData" + kind + "Test.java");
+            final Path file = Paths.get(path + "JMetaData" + kind + "_Test.java");
 
             final List<@NonNull String> javaLines = new ArrayList<>();
 
             javaLines.add("package aka.jmetadata.test;");
             javaLines.add("");
-            javaLines.add("import org.eclipse.jdt.annotation.NonNull;");
+            javaLines.add("import static org.junit.Assert.*;");
             javaLines.add("");
+            javaLines.add("import java.io.File;");
+            javaLines.add("import java.util.logging.Level;");
+            javaLines.add("import java.util.logging.Logger;");
+            javaLines.add("");
+            javaLines.add("import org.eclipse.jdt.annotation.NonNull;");
+            javaLines.add("import org.junit.AfterClass;");
+            javaLines.add("import org.junit.BeforeClass;");
+            javaLines.add("import org.junit.Test;");
+            javaLines.add("");
+            javaLines.add("import aka.jmetadata.main.JMetaData;");
             javaLines.add("import aka.jmetadata.main.JMetaData" + kind + ";");
             javaLines.add("");
             javaLines.add("/**");
@@ -350,16 +362,42 @@ public final class MediaInfoJavaGenerator {
             javaLines.add(" *");
             javaLines.add(" * @author Welle Charlotte");
             javaLines.add(" */");
-            javaLines.add("public final class JMetaData" + kind + "Test {");
+            javaLines.add("public final class JMetaData" + kind + "_Test {");
             javaLines.add("");
-            javaLines.add("   /**");
-            javaLines.add("    * Print " + kind + " informations.");
-            javaLines.add("    * ");
-            javaLines.add("    * @param jMetaData" + kind + " to be printed");
-            javaLines.add("    */");
-            javaLines.add("    static void printJMetadata" + kind + "(@NonNull final JMetaData" + kind + " jMetaData" + kind + ") {");
-            javaLines.add("        System.out.println(\"JMetaData" + kind + "\");");
-            javaLines.add("        System.out.println(\"-------------------------------------------------------\");");
+            javaLines.add("    private static @NonNull final Logger LOGGER = Logger.getLogger(JMetaData" + kind + "_Test.class.getName());");
+            javaLines.add("");
+            javaLines.add("    private static JMetaData" + kind + " jMetaData" + kind + ";");
+            javaLines.add("    private static JMetaData jMetaData;");
+            javaLines.add("");
+            javaLines.add("    /**");
+            javaLines.add("     * Initialize test.");
+            javaLines.add("     */");
+            javaLines.add("    @BeforeClass");
+            javaLines.add("    public static void beforeUnit() {");
+            javaLines.add("        try {");
+            javaLines.add("            jMetaData = new JMetaData();");
+            javaLines.add("            final ClassLoader classLoader = JMetaData" + kind + "_Test.class.getClassLoader();");
+            javaLines.add("            final File file = new File(classLoader.getResource(\"somefile\").getFile());");
+            javaLines.add("            jMetaData.open(file);");
+            javaLines.add("            jMetaData" + kind + " = null;");
+            javaLines.add("        } catch (final Throwable e) {");
+            javaLines.add("            LOGGER.log(Level.SEVERE, e.getMessage());");
+            javaLines.add("        }");
+            javaLines.add("    }");
+            javaLines.add("");
+            javaLines.add("    /**");
+            javaLines.add("     * Deinitialize test.");
+            javaLines.add("     */");
+            javaLines.add("    @AfterClass");
+            javaLines.add("    public static void afterUnit() {");
+            javaLines.add("        try {");
+            javaLines.add("            jMetaData.close();");
+            javaLines.add("        } catch (final Throwable e) {");
+            javaLines.add("            LOGGER.log(Level.SEVERE, e.getMessage());");
+            javaLines.add("        }");
+            javaLines.add("    }");
+            javaLines.add("");
+
             for (final Entry<@NonNull String, String> line : map.entrySet()) {
                 final String constantName = line.getKey();
                 String javadoc = line.getValue();
@@ -370,17 +408,26 @@ public final class MediaInfoJavaGenerator {
 
                 if (!javadoc.toLowerCase().contains("deprecated")) {
                     for (final String javaType : JAVATYPES) {
+                        javaLines.add("   /**");
+                        javaLines.add("    * Test get" + javaName + "As" + javaType + "() method.");
+                        javaLines.add("    */");
+                        javaLines.add("    @Test");
+                        javaLines.add("    public void subTestGet" + javaName + "As" + javaType + "() {");
+                        javaLines.add("        assertEquals(null, this.jMetaData" + kind + ".get" + javaName + "As" + javaType + "());");
                         javaLines.add("        System.out.println(\"" + javadoc + " AS " + javaType + " === \" + jMetaData" + kind + ".get" + javaName + "As" + javaType + "());");
+                        javaLines.add("    }");
+                        javaLines.add("");
                     }
                 }
+
             }
-            javaLines.add("    }");
-            javaLines.add("");
 
             javaLines.add("}");
 
             Files.write(file, javaLines, Charset.forName("UTF-8"));
-        } catch (final IOException e) {
+        } catch (
+
+        final IOException e) {
             LOGGER.logp(Level.SEVERE, "MediaInfoJavaGenerator", "createFileTest", e.getMessage(), e);
         }
     }
