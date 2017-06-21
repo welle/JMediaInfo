@@ -133,7 +133,7 @@ public final class MediaInfoEnumJavaGenerator {
 
     private void createConstantsFile(@NonNull final String kind, @NonNull final Map<@NonNull String, List<String>> map, @NonNull final String path) {
         try {
-            final Path file = Paths.get(path + "constants/codecs/" + kind + "Enum.java");
+            final Path file = Paths.get(path + "constants/codecs/" + kind + "CodecIdEnum.java");
 
             final List<@NonNull String> javaLines = new ArrayList<>();
 
@@ -152,7 +152,7 @@ public final class MediaInfoEnumJavaGenerator {
             javaLines.add(" *");
             javaLines.add(" * @author Welle Charlotte");
             javaLines.add(" */");
-            javaLines.add("public enum " + kind + "Enum implements CodecEnum {");
+            javaLines.add("public enum " + kind + "CodecIdEnum implements CodecEnum {");
             javaLines.add("");
             int i = 0;
             for (final Entry<@NonNull String, List<String>> line : map.entrySet()) {
@@ -178,7 +178,7 @@ public final class MediaInfoEnumJavaGenerator {
             javaLines.add("    @NonNull");
             javaLines.add("    private final List<@NonNull String> codecIDList;");
             javaLines.add("");
-            javaLines.add("    " + kind + "Enum(@NonNull final String @NonNull... codecIdParam) {");
+            javaLines.add("    " + kind + "CodecIdEnum(@NonNull final String @NonNull... codecIdParam) {");
             javaLines.add("        this.codecIDList = Arrays.asList(codecIdParam);");
             javaLines.add("    }");
             javaLines.add("");
@@ -188,18 +188,18 @@ public final class MediaInfoEnumJavaGenerator {
             javaLines.add("    }");
             javaLines.add("");
             javaLines.add("    /**");
-            javaLines.add("     * Get " + kind + "Enum corresponding to given string.");
+            javaLines.add("     * Get " + kind + "CodecIdEnum corresponding to given string.");
             javaLines.add("     *");
             javaLines.add("     * @param param");
             javaLines.add("     * @return corresponding " + kind + "Enum");
             javaLines.add("     */");
             javaLines.add("    @Nullable");
-            javaLines.add("    public static final " + kind + "Enum get" + kind + "Enum(@Nullable final String param) {");
-            javaLines.add("        " + kind + "Enum result = null;");
+            javaLines.add("    public static final " + kind + "CodecIdEnum get" + kind + "CodecIdEnum(@Nullable final String param) {");
+            javaLines.add("        " + kind + "CodecIdEnum result = null;");
             javaLines.add("        if (param != null) {");
             javaLines.add("            final String trimmedParam = param.trim().toLowerCase();");
             javaLines.add("            if (trimmedParam.length() > 0) {");
-            javaLines.add("                for (final " + kind + "Enum codecEnum : " + kind + "Enum.values()) {");
+            javaLines.add("                for (final " + kind + "CodecIdEnum codecEnum : " + kind + "CodecIdEnum.values()) {");
             javaLines.add("                    final List<@NonNull String> values = codecEnum.getValues();");
             javaLines.add("                    for (final String expectedCodec : values) {");
             javaLines.add("                        if (trimmedParam.equals(expectedCodec)) {");
