@@ -13,7 +13,12 @@ public class CSVConstants {
     public static final int NAME = 0;
 
     /**
-     * Name.
+     * Full name.
+     */
+    public static final int FULL_NAME = 5;
+
+    /**
+     * Documentation.
      */
     public static final int DOCUMENTATION = 6;
 

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -434,7 +435,7 @@ public final class MediaInfoJavaGenerator {
 
     @NonNull
     private Map<@NonNull String, String> parse(@NonNull final String url) {
-        final Map<@NonNull String, String> result = new HashMap<>();
+        final Map<@NonNull String, String> result = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         try {
             final URL obj = new URL(url);
             final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
