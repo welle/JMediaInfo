@@ -1,5 +1,7 @@
 package aka.jmetadata.main.constants.codecs;
 
+import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,86 +13,86 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Welle Charlotte
  */
-public enum AudioRealEnum {
+public enum AudioRealEnum implements CodecEnum {
 
-   /**
-    * 14.4.
-    */
+    /**
+     * 14.4.
+     */
     _144("_14.4", "VSELP", "Real Player 1"),
 
-   /**
-    * 14_4.
-    */
+    /**
+     * 14_4.
+     */
     _14_4("_14_4", "VSELP", "Real Player 1"),
 
-   /**
-    * 28.8.
-    */
+    /**
+     * 28.8.
+     */
     _288("_28.8", "G.728", "Real Player 2"),
 
-   /**
-    * 28_8.
-    */
+    /**
+     * 28_8.
+     */
     _28_8("_28_8", "G.728", "Real Player 2"),
 
-   /**
-    * atrc.
-    */
+    /**
+     * atrc.
+     */
     ATRC("atrc", "Atrac", "Real Player 8"),
 
-   /**
-    * audio/X-MP3-draft-00.
-    */
+    /**
+     * audio/X-MP3-draft-00.
+     */
     AUDIO_X_MP3_DRAFT_00("audio/X-MP3-draft-00", "MPEG Audio"),
 
-   /**
-    * audio/x-ralf-mpeg4.
-    */
+    /**
+     * audio/x-ralf-mpeg4.
+     */
     AUDIO_X_RALF_MPEG4("audio/x-ralf-mpeg4", "RealAudio Lossless", "Real Audio Lossless Format, Real Player 10", "Lossless"),
 
-   /**
-    * audio/x-ralf-mpeg4-generic.
-    */
+    /**
+     * audio/x-ralf-mpeg4-generic.
+     */
     AUDIO_X_RALF_MPEG4_GENERIC("audio/x-ralf-mpeg4-generic", "RealAudio Lossless", "Real Audio Lossless Format, Real Player 10", "Lossless"),
 
-   /**
-    * cook.
-    */
+    /**
+     * cook.
+     */
     COOK("cook", "Cooker", "Based on G.722.1, Real Player 6"),
 
-   /**
-    * dnet.
-    */
+    /**
+     * dnet.
+     */
     DNET("dnet", "AC-3", "Real Player 3"),
 
-   /**
-    * lpcJ.
-    */
+    /**
+     * lpcJ.
+     */
     LPCJ("lpcJ", "VSELP", "Real Player 1"),
 
-   /**
-    * raac.
-    */
+    /**
+     * raac.
+     */
     RAAC("raac", "AAC", "Real Player 9", "LC"),
 
-   /**
-    * racp.
-    */
+    /**
+     * racp.
+     */
     RACP("racp", "AAC", "Real Player 10", "HE-AAC"),
 
-   /**
-    * rtrc.
-    */
+    /**
+     * rtrc.
+     */
     RTRC("rtrc", "RealAudio 8"),
 
-   /**
-    * sipr.
-    */
+    /**
+     * sipr.
+     */
     SIPR("sipr", "ACELP", "Real Player 4"),
 
-   /**
-    * whrl.
-    */
+    /**
+     * whrl.
+     */
     WHRL("whrl", "RealAudio Multi-Channel", "Real Audio Multi-Channel");
 
     @NonNull
@@ -100,12 +102,7 @@ public enum AudioRealEnum {
         this.codecIDList = Arrays.asList(codecIdParam);
     }
 
-    /**
-     * Get the codecs of the ENUM.
-     *
-     * @return the codecs of the ENUM
-     */
-    @NonNull
+    @Override
     public List<@NonNull String> getValues() {
         return this.codecIDList;
     }

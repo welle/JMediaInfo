@@ -1,5 +1,7 @@
 package aka.jmetadata.main.constants.codecs;
 
+import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,76 +13,76 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Welle Charlotte
  */
-public enum TextMatroskaEnum {
+public enum TextMatroskaEnum implements CodecEnum {
 
-   /**
-    * S_ASS.
-    */
+    /**
+     * S_ASS.
+     */
     S_ASS("S_ASS", "ASS", "Advanced Sub Station Alpha"),
 
-   /**
-    * S_DVBSUB.
-    */
+    /**
+     * S_DVBSUB.
+     */
     S_DVBSUB("S_DVBSUB", "DVB Subtitle", "Picture based subtitle format used on DVBs"),
 
-   /**
-    * S_HDMV/PGS.
-    */
+    /**
+     * S_HDMV/PGS.
+     */
     S_HDMV_PGS("S_HDMV/PGS", "PGS", "Picture based subtitle format used on BDs/HD-DVDs"),
 
-   /**
-    * S_HDMV/TEXTST.
-    */
+    /**
+     * S_HDMV/TEXTST.
+     */
     S_HDMV_TEXTST("S_HDMV/TEXTST", "TEXTST", "Text based subtitle format used on BDs"),
 
-   /**
-    * S_IMAGE/BMP.
-    */
+    /**
+     * S_IMAGE/BMP.
+     */
     S_IMAGE_BMP("S_IMAGE/BMP", "Bitmap", "Basic image based subtitle format"),
 
-   /**
-    * S_KATE.
-    */
+    /**
+     * S_KATE.
+     */
     S_KATE("S_KATE", "KATE", "Karaoke And Text Encapsulation"),
 
-   /**
-    * S_SSA.
-    */
+    /**
+     * S_SSA.
+     */
     S_SSA("S_SSA", "SSA", "Sub Station Alpha"),
 
-   /**
-    * S_TEXT/ASS.
-    */
+    /**
+     * S_TEXT/ASS.
+     */
     S_TEXT_ASS("S_TEXT/ASS", "ASS", "Advanced Sub Station Alpha"),
 
-   /**
-    * S_TEXT/SSA.
-    */
+    /**
+     * S_TEXT/SSA.
+     */
     S_TEXT_SSA("S_TEXT/SSA", "SSA", "Sub Station Alpha"),
 
-   /**
-    * S_TEXT/USF.
-    */
+    /**
+     * S_TEXT/USF.
+     */
     S_TEXT_USF("S_TEXT/USF", "USF", "Universal Subtitle Format"),
 
-   /**
-    * S_TEXT/UTF8.
-    */
+    /**
+     * S_TEXT/UTF8.
+     */
     S_TEXT_UTF8("S_TEXT/UTF8", "UTF-8", "UTF-8 Plain Text"),
 
-   /**
-    * S_USF.
-    */
+    /**
+     * S_USF.
+     */
     S_USF("S_USF", "USF", "Universal Subtitle Format"),
 
-   /**
-    * S_UTF8.
-    */
+    /**
+     * S_UTF8.
+     */
     S_UTF8("S_UTF8", "UTF-8", "UTF-8 Plain Text"),
 
-   /**
-    * S_VOBSUB.
-    */
+    /**
+     * S_VOBSUB.
+     */
     S_VOBSUB("S_VOBSUB", "VobSub", "Picture based subtitle format used on DVDs");
 
     @NonNull
@@ -90,12 +92,7 @@ public enum TextMatroskaEnum {
         this.codecIDList = Arrays.asList(codecIdParam);
     }
 
-    /**
-     * Get the codecs of the ENUM.
-     *
-     * @return the codecs of the ENUM
-     */
-    @NonNull
+    @Override
     public List<@NonNull String> getValues() {
         return this.codecIDList;
     }

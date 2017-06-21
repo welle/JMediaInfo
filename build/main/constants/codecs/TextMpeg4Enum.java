@@ -1,5 +1,7 @@
 package aka.jmetadata.main.constants.codecs;
 
+import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,46 +13,46 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Welle Charlotte
  */
-public enum TextMpeg4Enum {
+public enum TextMpeg4Enum implements CodecEnum {
 
-   /**
-    * c608.
-    */
+    /**
+     * c608.
+     */
     C608("c608", "EIA-608"),
 
-   /**
-    * c708.
-    */
+    /**
+     * c708.
+     */
     C708("c708", "EIA-708"),
 
-   /**
-    * dfxp.
-    */
+    /**
+     * dfxp.
+     */
     DFXP("dfxp", "TTML"),
 
-   /**
-    * enct.
-    */
+    /**
+     * enct.
+     */
     ENCT("enct", "(Encrypted)"),
 
-   /**
-    * sbtl.
-    */
+    /**
+     * sbtl.
+     */
     SBTL("sbtl", "Apple text", "(iPhone)"),
 
-   /**
-    * subp.
-    */
+    /**
+     * subp.
+     */
     SUBP("subp", "VobSub", "The same subtitle format used on DVDs"),
 
-   /**
-    * text.
-    */
+    /**
+     * text.
+     */
     TEXT("text", "Apple text"),
 
-   /**
-    * tx3g.
-    */
+    /**
+     * tx3g.
+     */
     TX3G("tx3g", "Timed text");
 
     @NonNull
@@ -60,12 +62,7 @@ public enum TextMpeg4Enum {
         this.codecIDList = Arrays.asList(codecIdParam);
     }
 
-    /**
-     * Get the codecs of the ENUM.
-     *
-     * @return the codecs of the ENUM
-     */
-    @NonNull
+    @Override
     public List<@NonNull String> getValues() {
         return this.codecIDList;
     }

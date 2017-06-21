@@ -1,5 +1,7 @@
 package aka.jmetadata.main.constants.codecs;
 
+import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,31 +13,31 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Welle Charlotte
  */
-public enum VideoRealEnum {
+public enum VideoRealEnum implements CodecEnum {
 
-   /**
-    * RV10.
-    */
+    /**
+     * RV10.
+     */
     RV10("RV10", "RealVideo 1", "Based on H.263, Real Player 5"),
 
-   /**
-    * RV13.
-    */
+    /**
+     * RV13.
+     */
     RV13("RV13", "RealVideo 1.3", "Based on H.263, Real Player 5"),
 
-   /**
-    * RV20.
-    */
+    /**
+     * RV20.
+     */
     RV20("RV20", "RealVideo 2", "Based on H.263, Real Player 6"),
 
-   /**
-    * RV30.
-    */
+    /**
+     * RV30.
+     */
     RV30("RV30", "RealVideo 3", "Between H.263 and AVC (H.264), Real Player 8"),
 
-   /**
-    * RV40.
-    */
+    /**
+     * RV40.
+     */
     RV40("RV40", "RealVideo 4", "Based on AVC (H.264), Real Player 9");
 
     @NonNull
@@ -45,12 +47,7 @@ public enum VideoRealEnum {
         this.codecIDList = Arrays.asList(codecIdParam);
     }
 
-    /**
-     * Get the codecs of the ENUM.
-     *
-     * @return the codecs of the ENUM
-     */
-    @NonNull
+    @Override
     public List<@NonNull String> getValues() {
         return this.codecIDList;
     }

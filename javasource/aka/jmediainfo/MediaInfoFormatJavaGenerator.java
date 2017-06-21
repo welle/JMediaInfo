@@ -104,9 +104,9 @@ public final class MediaInfoFormatJavaGenerator {
             for (final Entry<@NonNull String, String> line : map.entrySet()) {
                 String constantName = line.getKey();
                 final String fullName = line.getValue();
-                javaLines.add("   /**");
-                javaLines.add("    * " + constantName + ".");
-                javaLines.add("    */");
+                javaLines.add("    /**");
+                javaLines.add("     * " + constantName + ".");
+                javaLines.add("     */");
                 if (constantName.matches("^([0-9]+).*$")) {
                     constantName = "_" + constantName;
                 }

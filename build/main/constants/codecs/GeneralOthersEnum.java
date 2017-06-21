@@ -1,5 +1,7 @@
 package aka.jmetadata.main.constants.codecs;
 
+import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,16 +13,16 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Welle Charlotte
  */
-public enum GeneralOthersEnum {
+public enum GeneralOthersEnum implements CodecEnum {
 
-   /**
-    * Ovbi.
-    */
+    /**
+     * Ovbi.
+     */
     OVBI("Ovbi", "Omneon VBI"),
 
-   /**
-    * rtp .
-    */
+    /**
+     * rtp .
+     */
     RTP_("rtp ", "RTP");
 
     @NonNull
@@ -30,12 +32,7 @@ public enum GeneralOthersEnum {
         this.codecIDList = Arrays.asList(codecIdParam);
     }
 
-    /**
-     * Get the codecs of the ENUM.
-     *
-     * @return the codecs of the ENUM
-     */
-    @NonNull
+    @Override
     public List<@NonNull String> getValues() {
         return this.codecIDList;
     }

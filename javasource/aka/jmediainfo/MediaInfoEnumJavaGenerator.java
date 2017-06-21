@@ -87,9 +87,48 @@ public final class MediaInfoEnumJavaGenerator {
         assert url != null;
         final Map<@NonNull String, List<String>> map = parse(url);
 
+        createInterfaceFile(path);
+
         createConstantsFile(entry.getKey(), map, path);
 
         return success;
+    }
+
+    private void createInterfaceFile(@NonNull final String path) {
+        try {
+            final Path file = Paths.get(path + "constants/codecs/interfaces/CodecEnum.java");
+
+            final List<@NonNull String> javaLines = new ArrayList<>();
+
+            javaLines.add("package aka.jmetadata.main.constants.codecs.interfaces;");
+            javaLines.add("");
+            javaLines.add("import java.util.List;");
+            javaLines.add("");
+            javaLines.add("import org.eclipse.jdt.annotation.NonNull;");
+            javaLines.add("");
+            javaLines.add("/**");
+            javaLines.add(" * Interface for constants parameters.");
+            javaLines.add(" *");
+            javaLines.add(" * @author Welle Charlotte");
+            javaLines.add(" */");
+            javaLines.add("public interface CodecEnum {");
+            javaLines.add("");
+            javaLines.add("    /**");
+            javaLines.add("     * Get the codecs of the ENUM.");
+            javaLines.add("     *");
+            javaLines.add("     * @return the codecs of the ENUM");
+            javaLines.add("     */");
+            javaLines.add("    @NonNull");
+            javaLines.add("    public List<@NonNull String> getValues();");
+            javaLines.add("");
+            javaLines.add("}");
+
+            Files.write(file, javaLines, Charset.forName("UTF-8"));
+        } catch (
+
+        final IOException e) {
+            LOGGER.logp(Level.SEVERE, "ConstantsCreator", "createConstantsFile", e.getMessage(), e);
+        }
     }
 
     private void createConstantsFile(@NonNull final String kind, @NonNull final Map<@NonNull String, List<String>> map, @NonNull final String path) {
@@ -99,6 +138,8 @@ public final class MediaInfoEnumJavaGenerator {
             final List<@NonNull String> javaLines = new ArrayList<>();
 
             javaLines.add("package aka.jmetadata.main.constants.codecs;");
+            javaLines.add("");
+            javaLines.add("import aka.jmetadata.main.constants.codecs.interfaces.CodecEnum;");
             javaLines.add("");
             javaLines.add("import java.util.Arrays;");
             javaLines.add("import java.util.List;");
@@ -111,15 +152,15 @@ public final class MediaInfoEnumJavaGenerator {
             javaLines.add(" *");
             javaLines.add(" * @author Welle Charlotte");
             javaLines.add(" */");
-            javaLines.add("public enum " + kind + "Enum {");
+            javaLines.add("public enum " + kind + "Enum implements CodecEnum {");
             javaLines.add("");
             int i = 0;
             for (final Entry<@NonNull String, List<String>> line : map.entrySet()) {
                 String constantName = line.getKey();
                 final List<String> altNameList = line.getValue();
-                javaLines.add("   /**");
-                javaLines.add("    * " + constantName + ".");
-                javaLines.add("    */");
+                javaLines.add("    /**");
+                javaLines.add("     * " + constantName + ".");
+                javaLines.add("     */");
                 if (constantName.matches("^([0-9]+).*$")) {
                     constantName = "_" + constantName;
                 }
@@ -141,12 +182,7 @@ public final class MediaInfoEnumJavaGenerator {
             javaLines.add("        this.codecIDList = Arrays.asList(codecIdParam);");
             javaLines.add("    }");
             javaLines.add("");
-            javaLines.add("    /**");
-            javaLines.add("     * Get the codecs of the ENUM.");
-            javaLines.add("     *");
-            javaLines.add("     * @return the codecs of the ENUM");
-            javaLines.add("     */");
-            javaLines.add("    @NonNull");
+            javaLines.add("    @Override");
             javaLines.add("    public List<@NonNull String> getValues() {");
             javaLines.add("        return this.codecIDList;");
             javaLines.add("    }");
