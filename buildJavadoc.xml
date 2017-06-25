@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<project name="Javadoc" default="runJavadoc" basedir=".">
+	
+    <target name="runJavadoc" depends="chkPropsJavadoc, failJavadoc" unless="missingPropJavadoc">
+        <echo message="Compiling Javadoc..."/>
+        <antcall target="javadoc" />
+    </target>
+
+    <target name="chkPropsJavadoc">
+        <property name="chk0" value="$${javadoc_dest}"/>
+        <condition property="missingPropJavadoc">
+            <or>
+                <equals arg1="${chk0}" arg2="${javadoc_dest}"/>
+                <equals arg1="" arg2="${javadoc_dest}"/>
+            </or>
+        </condition>
+    </target>
+    
+    <target name="failJavadoc" if="missingPropJavadoc">
+        <fail message="missing property(ies) : javadoc_dest"/>
+    </target>
+    	
+    <import file="classpath.xml" />
+
+	<fileset id="javadoc" dir="JMediainfo/javasource/">
+	    <exclude name="**/test/**"/>
+	    <include name="aka/**"/>
+    </fileset>  
+
+
+	<target name="javadoc">
+        <delete dir="${javadoc_dest}" />
+        <mkdir dir="${javadoc_dest}" />
+	    <javadoc destdir="${javadoc_dest}" 
+			author="true" 
+			version="true" 
+			use="true" 
+			windowtitle="JMediainfo" 
+			source="1.7" 
+			linksource="false" 
+			classpathref="JMediainfo.classpath"
+			packagenames="aka/**/*.*"
+			breakiterator="true" 
+			private="true" >
+			<header><![CDATA[<b>JMediainfo</b><br>]]></header>
+	    	<fileset refid="javadoc"/>
+			<link href="http://download.oracle.com/javase/7/docs/api/" />
+		</javadoc>
+	</target>
+
+</project>

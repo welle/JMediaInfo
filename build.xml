@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="JMediainfo" default="jars" basedir=".">
+
+	<target name="chkBuildProperties" >
+		<available file="build.properties" type="file" property="build.properties.present"/>
+	</target>
+	<target name="copyBuildProperties" unless="build.properties.present" >
+		<echo message="Creating properties file." />
+    	<copy file="build.properties.sample" tofile="build.properties" overwrite="false" verbose="true" />
+	</target>
+	<target name="init" depends="chkBuildProperties,copyBuildProperties" >
+		<echo message="Reading properties files." />
+    	<property file="build.properties" />
+    	<property file="version.properties" />
+	</target>
+
+    <target name="clean" depends="init">
+        <ant antfile="buildJars.xml" target="clean" />
+
+        <delete dir="bin" />
+    </target>
+
+    <target name="all" depends="jars,javadoc" />
+
+    <target name="jars" depends="init">
+        <echo message="Build JMediainfo Jars" />
+
+        <property name="classes" value="bin" />
+
+        <ant antfile="buildJars.xml" />
+    </target>
+
+    <target name="javadoc" depends="init">
+        <echo message="Running Javadoc on JMediainfo" />
+
+        <ant antfile="buildJavadoc.xml" />
+    </target>
+
+</project>
