@@ -415,7 +415,6 @@ public final class MediaInfoJavaGenerator {
                         javaLines.add("    @Test");
                         javaLines.add("    public void subTestGet" + javaName + "As" + javaType + "() {");
                         javaLines.add("        assertEquals(null, this.jMetaData" + kind + ".get" + javaName + "As" + javaType + "());");
-                        javaLines.add("        System.out.println(\"" + javadoc + " AS " + javaType + " === \" + jMetaData" + kind + ".get" + javaName + "As" + javaType + "());");
                         javaLines.add("    }");
                         javaLines.add("");
                     }
