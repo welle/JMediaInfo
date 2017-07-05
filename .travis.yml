@@ -1,4 +1,4 @@
 language: java
-ant: jars
+script: ant jars
 jdk:
   - oraclejdk8
