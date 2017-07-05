@@ -1,39 +1,71 @@
 <?xml version="1.0"?>
 <project name="JMediainfo" default="jars" basedir=".">
 
-	<target name="chkBuildProperties" >
-		<available file="build.properties" type="file" property="build.properties.present"/>
+	<property name="main.build.dir" value="build/main" />
+	<property name="main.src.dir" value="src" />
+	<property name="test.build.dir" value="build/test" />
+	<property name="test.src.dir" value="test" />
+
+	<path id="classpath.base" />
+
+	<path id="classpath.test">
+		<pathelement location="libTest/junit-4.11.jar" />
+		<pathelement location="libTest/hamcrest-core-1.3.jar" />
+		<pathelement location="${main.build.dir}" />
+		<path refid="classpath.base" />
+	</path>
+
+	<target name="chkBuildProperties">
+		<available file="build.properties" type="file" property="build.properties.present" />
 	</target>
-	<target name="copyBuildProperties" unless="build.properties.present" >
+	<target name="copyBuildProperties" unless="build.properties.present">
 		<echo message="Creating properties file." />
-    	<copy file="build.properties.sample" tofile="build.properties" overwrite="false" verbose="true" />
+		<copy file="build.properties.sample" tofile="build.properties" overwrite="false" verbose="true" />
 	</target>
-	<target name="init" depends="chkBuildProperties,copyBuildProperties" >
+	<target name="init" depends="chkBuildProperties,copyBuildProperties">
 		<echo message="Reading properties files." />
-    	<property file="build.properties" />
-    	<property file="version.properties" />
+		<property file="build.properties" />
+		<property file="version.properties" />
 	</target>
 
-    <target name="clean" depends="init">
-        <ant antfile="buildJars.xml" target="clean" />
+	<target name="clean" depends="init">
+		<ant antfile="buildJars.xml" target="clean" />
 
-        <delete dir="bin" />
-    </target>
+		<delete dir="bin" />
+		<echo message="clean done" />
+	</target>
 
-    <target name="all" depends="jars,javadoc" />
+	<target name="all" depends="jars,javadoc" />
 
-    <target name="jars" depends="init">
-        <echo message="Build JMediainfo Jars" />
+	<target name="jars" depends="init">
+		<echo message="Build JMediainfo Jars" />
 
-        <property name="classes" value="bin" />
+		<property name="classes" value="bin" />
 
-        <ant antfile="buildJars.xml" />
-    </target>
+		<ant antfile="buildJars.xml" />
+	</target>
 
-    <target name="javadoc" depends="init">
-        <echo message="Running Javadoc on JMediainfo" />
+	<target name="javadoc" depends="init">
+		<echo message="Running Javadoc on JMediainfo" />
 
-        <ant antfile="buildJavadoc.xml" />
-    </target>
+		<ant antfile="buildJavadoc.xml" />
+	</target>
+
+	<target name="test" depends="run, clean" />
+
+	<!-- Test and build all files  -->
+	<!-- To run this: use "ant" (default) or "ant run" -->
+	<target name="run" depends="jars">
+		<junit printsummary="on" haltonfailure="yes">
+			<classpath>
+				<path refid="classpath.test" />
+				<pathelement location="${test.build.dir}" />
+			</classpath>
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${test.src.dir}" includes="**/*Test*.java" />
+			</batchtest>
+		</junit>
+	</target>
 
 </project>
