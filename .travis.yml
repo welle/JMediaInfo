@@ -8,7 +8,7 @@ before_script:
 
 env:
   global:
-    - classes=JMetadata/classes
+    - classes=./classes
     - jars_dest=./
 jdk:
   - oraclejdk8
