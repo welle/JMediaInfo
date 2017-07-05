@@ -3,7 +3,6 @@ script: ant test
 env:
   global:
     - classes=JMetadata/classes
-    - classes=./
-jars_dest : ./
+    - jars_dest=./
 jdk:
   - oraclejdk8
