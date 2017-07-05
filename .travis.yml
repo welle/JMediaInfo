@@ -1,7 +1,9 @@
 language: java
 script: ant test
-classes: JMetadata/classes
+env:
+  global:
+    - classes=JMetadata/classes
+    - classes=./
 jars_dest : ./
-    
 jdk:
   - oraclejdk8
