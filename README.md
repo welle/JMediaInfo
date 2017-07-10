@@ -1,6 +1,4 @@
-# JMediaInfo # 
-======================
-[![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo)
+# JMediaInfo [![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo) #
 
 ## Quick summary ##
 
