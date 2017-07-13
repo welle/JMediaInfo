@@ -1,13 +1,13 @@
 language: java
-script:
-  - ant run
-  - sonar-scanner
+sudo: false
 before_script:
   # Ant build tool configuration
   - cp build.properties.sample build.properties
   - mkdir ./bin
   - sed -i -e "s,jars_dest =,jars_dest =./," build.properties
-
+script:
+  - ant run
+  - sonar-scanner
 env:
   global:
     - classes=./bin
