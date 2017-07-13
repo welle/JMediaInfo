@@ -1,4 +1,4 @@
-# JMediaInfo [![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo) #
+# JMediaInfo [![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=JMediaInfo)](https://sonarcloud.io/dashboard/index/JMediaInfo)#
 
 ## Quick summary ##
 
