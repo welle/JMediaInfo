@@ -1,6 +1,6 @@
 language: java
 script:
-  - ant jars
+  - ant run
   - sonar-scanner
 before_script:
   # Ant build tool configuration

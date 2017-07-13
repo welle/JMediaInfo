@@ -29,7 +29,7 @@
     <property name="target.managers" value="${jars_dest}"/>
     <property name="target.applications" value="${jars_dest}"/>
 
-    <target name="clean">
+    <target name="cleanJars">
         <delete dir="${jars_dest}" />
     </target>
     

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="JMetadata Classpath">
+
+	<path id="JMediaInfo.classpath">
+		<fileset dir="libs/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="JMediaInfoTest.classpath">
+		<fileset dir="libs/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="libTest/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+</project>
