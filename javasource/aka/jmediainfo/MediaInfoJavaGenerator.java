@@ -46,10 +46,10 @@ public final class MediaInfoJavaGenerator {
 
     static {
         KINDSSTREAM = new HashMap<>();
-        KINDSSTREAM.put("Audio", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/Audio.csv");
-        KINDSSTREAM.put("Text", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/Text.csv");
-        KINDSSTREAM.put("Video", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/Video.csv");
-        KINDSSTREAM.put("Menu", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/Menu.csv");
+        KINDSSTREAM.put("Audio", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/Stream/Audio.csv");
+        KINDSSTREAM.put("Text", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/Stream/Text.csv");
+        KINDSSTREAM.put("Video", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/Stream/Video.csv");
+        KINDSSTREAM.put("Menu", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/Stream/Menu.csv");
 
         KINDS = new HashMap<>();
         KINDS.put("General", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/Stream/General.csv");

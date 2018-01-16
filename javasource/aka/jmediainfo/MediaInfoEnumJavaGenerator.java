@@ -43,17 +43,17 @@ public final class MediaInfoEnumJavaGenerator {
 
     static {
         CODECS_ID_URL = new HashMap<>();
-        CODECS_ID_URL.put("AudioMatroska", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Audio_Matroska.csv");
-        CODECS_ID_URL.put("AudioMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Audio_Mpeg4.csv");
-        CODECS_ID_URL.put("AudioReal", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Audio_Real.csv");
-        CODECS_ID_URL.put("GeneralMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_General_Mpeg4.csv");
-        CODECS_ID_URL.put("GeneralOthers", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Other_Mpeg4.csv");
-        CODECS_ID_URL.put("TextMatroska", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Text_Matroska.csv");
-        CODECS_ID_URL.put("TextMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Text_Mpeg4.csv");
-        CODECS_ID_URL.put("VideoMatroska", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Video_Matroska.csv");
-        CODECS_ID_URL.put("VideoMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Video_Mpeg4.csv");
-        CODECS_ID_URL.put("VideoReal", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Video_Real.csv");
-        CODECS_ID_URL.put("VideoReal", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/CodecID_Video_Real.csv");
+        CODECS_ID_URL.put("AudioMatroska", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Audio_Matroska.csv");
+        CODECS_ID_URL.put("AudioMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Audio_Mpeg4.csv");
+        CODECS_ID_URL.put("AudioReal", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Audio_Real.csv");
+        CODECS_ID_URL.put("GeneralMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_General_Mpeg4.csv");
+        CODECS_ID_URL.put("GeneralOthers", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Other_Mpeg4.csv");
+        CODECS_ID_URL.put("TextMatroska", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Text_Matroska.csv");
+        CODECS_ID_URL.put("TextMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Text_Mpeg4.csv");
+        CODECS_ID_URL.put("VideoMatroska", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Video_Matroska.csv");
+        CODECS_ID_URL.put("VideoMpeg4", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Video_Mpeg4.csv");
+        CODECS_ID_URL.put("VideoReal", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Video_Real.csv");
+        CODECS_ID_URL.put("VideoReal", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/CodecID_Video_Real.csv");
     }
 
     /**

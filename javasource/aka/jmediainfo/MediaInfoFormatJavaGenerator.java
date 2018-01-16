@@ -43,7 +43,7 @@ public final class MediaInfoFormatJavaGenerator {
 
     static {
         FORMAT_URL = new HashMap<>();
-        FORMAT_URL.put("Format", "https://raw.githubusercontent.com/MediaArea/MediaInfoLib/master/Source/Resource/Text/DataBase/Format.csv");
+        FORMAT_URL.put("Format", "https://raw.githubusercontent.com/MediaArea/MediaConch/master/SourceCode/MediaInfoLib/Source/Resource/Text/DataBase/Format.csv");
     }
 
     /**

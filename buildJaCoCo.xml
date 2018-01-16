@@ -1,11 +1,6 @@
 <project name="Example Ant Build with JaCoCo" default="rebuild"
 	xmlns:jacoco="antlib:org.jacoco.ant">
 
-	<description>
-		Example Ant build file that demonstrates how a JaCoCo coverage report
-		can be itegrated into an existing build in three simple steps.
-	</description>
-
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="src.dir" location="./javasource" />
 	<property name="result.dir" location="./reports" />
@@ -35,7 +30,6 @@
 
 	<target name="unittest">
 	   <mkdir dir="reports/junit/"/>
-		<!-- Step 2: Wrap test execution with the JaCoCo coverage task -->
 		<jacoco:coverage destfile="${result.exec.file}">
 			<junit fork="yes" forkmode="once" printsummary="yes"
 				haltonfailure="no" showoutput="yes">
@@ -46,21 +40,11 @@
 				</assertions>
 				<jvmarg value="-Xms256m" />
 				<jvmarg value="-Xmx2048m" />
-				<!-- Specify the name of the coverage data file to use. The value specified 
-					below is the default. -->
-
 				<classpath refid="JMediaInfo.classpath" />
 				<classpath refid="JMediaInfoTest.classpath" />
-				<!--classpath>
-					<pathelement location="${result.test-classes.dir}" />
-					<pathelement location="${result.classes.dir}/aka/jmetadata/test/Sintel_DivXPlus_6500kbps.mkv" />
-				</classpath-->
 				<formatter type="xml" />
 
 				<batchtest todir="reports/junit/" haltonfailure="no">
-					<!--fileset dir="Test/javasource">
-						<include name="**/*_Test.java" />
-					</fileset-->
 				</batchtest>
 
 			</junit>
