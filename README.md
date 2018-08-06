@@ -1,4 +1,4 @@
-# JMediaInfo [![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo) [![quality gate](https://sonarcloud.io/api/project_badges/measure?project=aka.jmediainfo%3AJMediaInfo&metric=alert_status)] (https://sonarcloud.io/dashboard?id=aka.jmetadata%3AJMediaInfo) #
+# JMediaInfo [![Build Status](https://travis-ci.org/welle/JMediaInfo.svg?branch=master)](https://travis-ci.org/welle/JMediaInfo) [![quality gate](https://sonarcloud.io/api/project_badges/measure?project=aka.jmediainfo%3AJMediaInfo&metric=alert_status)](https://sonarcloud.io/dashboard?id=aka.jmediainfo%3AJMediaInfo) #
 
 ## Quick summary ##
 
